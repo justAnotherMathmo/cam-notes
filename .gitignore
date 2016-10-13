@@ -11,4 +11,5 @@
 */*.script
 */*.table
 *.swp
+*/*.gz
 todo

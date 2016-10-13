@@ -1,8 +1,16 @@
 # Cambridge Mathematics Lecture Notes
 
-These are the notes I took during lectures in Cambridge. These notes are also available (in compiled form) at https://dec41.user.srcf.net/ and mirrored at https://dalcde.github.io/srcf-web/. The notes on the website are generally more up to date with the latest corrections, as I only git commit and push when I feel like doing so. The usual disclaimers can also be found on the website.
+This repository is a shameless fork of https://github.com/dalcde/cam-notes containing all of his hard work. I've merely forked it for convenience and to use the framework set up to create summary notes for some of the Part III lecture courses I'm taking in Cambridge. Full credit is given to Dexter for most of the work here.
 
-# Available Subjects
+# Summary Notes
+## Part III
+### Michaelmas Term
+ - Combinatorics (2016, B. Bollobás)
+ - Introduction to Additive Combinatorics (2016, W. T. Gowers)
+ - Local Fields (2016, C. Johansson)
+ - Percolation and Random Walks on Graphs (2016, P. Sousi)
+
+# Dexter's Notes
 
 Currently, the notes for the following subjects are available.
 
