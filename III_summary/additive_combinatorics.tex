@@ -16,7 +16,10 @@
 \setcounter{section}{-1}
 \section{Introduction}
 \marginpar{Lecture 1}
+\begin{notation}
 $[N] = {1,2,\cdots, N}$
+\end{notation}
+
 
 \begin{thm}[Szemerédi's theorem]\index{Szemerédi's theorem}
 	$\forall\delta > 0,\ \forall k,\ \exists N\ \forall A \subset [N]$ s.t. $|A| \geq\delta N$ and $A$ contains an arithmetic progression of length $k$.
@@ -25,11 +28,13 @@ $[N] = {1,2,\cdots, N}$
 This theorem looks like it might be nicely solvable or have a counter-example, but we need hard machinery to attack it. Developing such tools will be the goal of the course.
 
 \section{Discrete Fourier Analysis and Roth's Theorem}
+\begin{notation}
 Let $N\in\N$ and $\omega=e^{2\pi\i/N}$.
 
 Write $\Z_N$ for the cyclic group of integers mod $N$.
 
 Write $\E_xf(x)=N^{-1}\sum_{x\in\Z_N}f(x)$ (same notation also used for other averages).
+\end{notation}
 
 \begin{defi}[Discrete Fourier Transform]\index{Fourier transform}
 	If $f:\Z_N \rightarrow \C$, we define this as
