@@ -131,6 +131,13 @@
 \newtheorem*{rem}{Remarks}
 \newtheorem*{thm}{Theorem}
 
+\newtheorem{cor-num}{Corollary}
+\newtheorem{defi-num}[cor-num]{Definition}
+\newtheorem{exer-num}[cor-num]{Exercise}
+\newtheorem{prop-num}[cor-num]{Proposition}
+\newtheorem{thm-num}[cor-num]{Theorem}
+
+
 \renewcommand{\labelitemi}{--}
 \renewcommand{\labelitemii}{$\circ$}
 \renewcommand{\labelenumi}{(\roman{*})}
@@ -159,10 +166,12 @@
 \newcommand{\RP}{\mathbb{RP}}
 \newcommand{\CP}{\mathbb{CP}}
 
-\newcommand{\A}{\mathscr{A}}
+\newcommand{\A}{\mathscr{A}}	%Backwards compatability
+\newcommand{\calA}{\mathscr{A}}
 \newcommand{\calB}{\mathscr{B}}
 \newcommand{\calC}{\mathscr{C}}
 \newcommand{\calD}{\mathscr{D}}
+\newcommand{\calO}{\mathscr{O}}
 
 
 \newcommand{\ph}{\,\cdot\,}

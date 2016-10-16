@@ -7,6 +7,9 @@
 \def\ncourse {Combinatorics}
 
 \input{../summary_header}
+\makeatletter
+\@addtoreset{cor-num}{section}
+\makeatother
 
 \begin{document}
 \maketitle
@@ -38,20 +41,21 @@ Note that here the edge $Ax\in E\left(G_{\A}\right)\Leftrightarrow x\in A$. Basi
 
 If we look at the bipartite graph of an SDR as above, then we see that it corresponds to a complete matching $U\rightarrow W$ (i.e. $\A$ into all elements of $X$ that $\A$ hits)
 
-\begin{thm}[1, Hall, 1935]\index{Hall!theorem}
+\begin{thm-num}[Hall, 1935]\index{Hall!theorem}
 	A set system $\A$ has an SDR if $\forall\A'\subset\A$:
 	$$\left|\bigcup_{A\in\A'}A\right|\geq\left|\A\right|$$
-\end{thm}
+\end{thm-num}
 
 If we look at a bipartite graph in the context of set systems, we see that every bipartite graph corresponds to a multiset of sets, giving us a reformulation of Hall:
 
-\begin{thm}[$1'$]\index{Hall!theorem}
+\addtocounter{cor-num}{-1}
+\begin{thm-num}[Alternate Version]\index{Hall!theorem}
 	A bipartite graph $G(U,W)$ has a complete matching if, $\forall S\subset U$,
 	\begin{equation}\index{Hall!criterion}\label{eq:hc}
 		\left|\Gamma(S)\right|\geq|S|
 	\end{equation}
 	Where $\Gamma(S)$ is the set of neighbours of $S$.
-\end{thm}
+\end{thm-num}
 \begin{proof}[Proof 1]
 	The necessary direction is trivial, so we look only at sufficiency.
 	
@@ -69,9 +73,9 @@ If we look at a bipartite graph in the context of set systems, we see that every
 	Split into the cases about whether or $\exists E\in \xi$ where $E\neq U$. If it exists, then form the sub-graphs from $H=E\cup\Gamma(E)$ and $G\smallsetminus H$ - both satisfy (\ref{eq:hc}) so done by induction. Otherwise, pick an edge $uw$ - then $G\smallsetminus \{u,w\}$ satisfies (\ref{eq:hc}) so add back $u$ and $w$ and we're done.
 \end{proof}
 
-\begin{cor}[2]
+\begin{cor-num}
 	$G(U,W)$ bipartite, $d(u)\geq d(w)\ \forall u\in U, w\in W$. Then $\exists$ a complete matching $U\rightarrow W$.
-\end{cor}
+\end{cor-num}
 \begin{proof}
 	Pick $d(u)\geq d\geq d(w)$, look at a general $S\subset U$ to get $d|S| \leq e(S, \Gamma(S)) \leq d|\Gamma(S)|$
 \end{proof}
@@ -84,17 +88,17 @@ If we look at a bipartite graph in the context of set systems, we see that every
 
 Note that $r|U|=e(G)=s|W|$ and that Corollary 2 implies that $G(U, W)$ being $(r,s)$-regular gives us a complete matching from $U$ to $W$ if $|U|\leq |W|$
 
-\begin{cor}[3]\index{matching!complete}
+\begin{cor-num}\index{matching!complete}
 	Let $0\leq i,j\leq n$, with $\binom{n}{i}\leq\binom{n}{j}$. Then $\exists$ a complete matching $f:[n]^{(i)}\rightarrow[n]^{(j)}$ s.t. $f(A)\subset A$ if $j\leq i$ and $f(A)\supset A$ if $i\leq j$.
-\end{cor}
+\end{cor-num}
 
-\begin{thm}[4]
+\begin{thm-num}
 	Let $G=G(U,W)$ be a connected $(r,s)$-regular graph. Then, for $\phi\neq A\subset U$,
 	
 	$$\frac{|\Gamma(A)|}{|W|}\geq \frac{|A|}{|U|}$$
 	
 	With equality iff $A=U$
-\end{thm}
+\end{thm-num}
 \begin{proof}
 	Use $r|A|=e(A,\Gamma(A))\leq s|\Gamma(A)|$ and divide by $|W|$ to get the result (noting $r|U|=s|W|$). If equality holds, then all edges out of $\Gamma(A)$ go into $A$, so $A=U$ or the else graph is disconnected.
 \end{proof}
@@ -130,9 +134,9 @@ The simplest example of Sperner sets are the level sets, $X^{(r)}$
 	In a poset, an \textbf{antichain} has no two elements that are comparable.
 \end{defi}
 
-\begin{thm}[1, Sperner, 1928]\index{Sperner!Theorem}
+\begin{thm-num}[Sperner, 1928]\index{Sperner!Theorem}
 	If $\A\subset\P(n)$ is Sperner, then $|\A|\leq\binom{n}{\lf n/2\rf}$
-\end{thm}
+\end{thm-num}
 \begin{proof}
 	For $0\leq r\leq n-1$, we can easily find a complete matching between $X^{(r)}$ and $X^{(r+1)}$ from the smaller set to the larger set (where $AB\in E\left(X^{(r)},X^{(r+1)}\right)$ iff $A\subset B$ or $B\subset A$). All these matchings put together create a collection of $\binom{n}{\lf n/2\rf}$ paths in $Q^n$ (look from the largest layer in the middle outward - i.e. the layer where $r=\lf n/2\rf$), each of which is a chain. Hence our poset is covered by $\binom{n}{\lf n/2\rf}$, giving $|\A|\leq\binom{n}{\lf n/2\rf}$
 \end{proof}}
@@ -141,22 +145,23 @@ The simplest example of Sperner sets are the level sets, $X^{(r)}$
 	The \textbf{weight} $w(A)$ of a set $A\in\P(n)$ is $w(A)=\frac{1}{\binom{n}{|A|}}$
 \end{defi}
 
-\begin{thm}[2, LYM or YMBL\footnote{Yamamoto, 1954; Meshalkin, 1963; Bollob\'as, 1965; Lubell, 1966}] \index{Yamamoto}\index{Meshalkin}\index{Bollob\'as}\index{Lubell}\index{LYM}\index{YMBL}
+\begin{thm-num}[LYM or YMBL\footnote{Yamamoto, 1954; Meshalkin, 1963; Bollob\'as, 1965; Lubell, 1966}] \index{Yamamoto}\index{Meshalkin}\index{Bollob\'as}\index{Lubell}\index{LYM}\index{YMBL}
 	Let $\A$ be a Sperner system on $X$, with $|X|=n$. Then $$w(\A):=\sum_{A\in\A}w(A)\leq 1$$
-\end{thm}
+\end{thm-num}
 \begin{proof}
 	Look at the maximal chains in $\P(X)$, $A_0\subset A_1\subset\cdots\subset A_n$, with $A_i\in X^{(i)}$ (so $|A_i|=i$). By just picking elements one at a time, we can see that the number of maximal chains is $n!$. Each such chain has $\leq 1$ element of $\A$, as $\A$ is Sperner. But also, every $A\in\A$ is in $|A|!\left(n-|A|\right)!$ chains.
 	
 	Hence, $\sum_{A\in\A}|A|!\left(n-|A|\right)!\leq n!$ which gives the result.
 \end{proof}
 
-\begin{thm}[$2'$, LYM or YMBL]\index{LYM}\index{YMBL}\marginpar{Lecture 3}
+\addtocounter{cor-num}{-1}
+\begin{thm-num}[Alternate Version]\index{LYM}\index{YMBL}\marginpar{Lecture 3}
 	If $\A\subset \P(n)$ is an anti-chain, then $w(\A)\leq 1$
-\end{thm}
+\end{thm-num}
 
-\begin{cor}[3]
+\begin{cor-num}
 	If $\A\subset\P(n)$ is a Sperner system, then $|\A|\leq\binom{n}{\lf n/2\rf}$, with equality iff $\A$ is $X^{(\lf n/2\rf)}$ or $X^{(\lc n/2\rc)}$.
-\end{cor}
+\end{cor-num}
 \begin{proof}
 	The inequality is immediate.
 	
@@ -171,17 +176,17 @@ The simplest example of Sperner sets are the level sets, $X^{(r)}$
 
 Note that a Sperner system is 1-Sperner.
 
-\begin{cor}[4, Erd\H{o}s, 1945]\index{Erd\H{o}s}
+\begin{cor-num}[Erd\H{o}s, 1945]\index{Erd\H{o}s}
 	If $\A\in\P(n)$ is $k$-Sperner, then $|\A|$ is at most the sum of the $k$ largest binomial coefficients.
-\end{cor}
+\end{cor-num}
 
 \begin{thm}[Littlewood and Offord - LO\footnote{I don't think this is examinable}]\index{Littlewood}\index{Offord}
 	$z_i\in\C$, $\left|z_i\right|\geq 1$, then the number of $\sum_1^n\pm z_i$ within $k$ of each other is $\leq ck\frac{2^n\log n}{\sqrt{n}}$ for some constant $c$.
 \end{thm}
 
-\begin{thm}[5, Erd\H{o}s, 1945]\index{Erd\H{o}s}
+\begin{thm-num}[Erd\H{o}s, 1945]\index{Erd\H{o}s}
 	Let $x_1,\cdots, x_n\in\R$ with $x_i\geq1$. Then the number of sums $\sum_1^n\pm x_i$ in an open interval $J$ of length $2k$ is at most the sum of the $k$ largest binomial coefficients.
-\end{thm}
+\end{thm-num}
 \begin{proof}
 	Define $\A=\{A\in\P(n) : \sum_{i\in A}x_i - \sum_{j\notin A}x_j\in J\}$ - this is $k$-Sperner, as moving $x_i$ from one sum to the other gives a change in value of at least 2, so a chain of $k+1$ sets would need a change of at least $2k$. Hence, we're done.
 \end{proof}
@@ -194,9 +199,9 @@ Note that a Sperner system is 1-Sperner.
 	A chain $A_0\subset A_1\subset \cdots \subset A_k$ is \textbf{symmetric} if $\left|A_{i+1}\right|=\left|A_{i}\right|+1\ \forall i$ and $\left|A_0\right|+\left|A_k\right|=n$
 \end{defi}
 
-\begin{thm}[6, Kleitman and Katona]\index{Kleitman}\index{Katona}
+\begin{thm-num}[Kleitman and Katona]\index{Kleitman}\index{Katona}
 	$\P(n)$ has a decomposition into symmetric chains.
-\end{thm}
+\end{thm-num}
 \begin{proof}
 	Induct on $n$ - the base case is $\{\phi,\{1\}\}$.
 	
@@ -218,9 +223,9 @@ For the next few results, let $E$ be a normed space, $x_1,\cdots, x_n\in E$, $\l
 	Call a partition $\P(n)=\dot{\bigcup}_1^s\calD_j$ \textbf{symmetric} if there are precisely $\binom{n}{i}-\binom{n}{i-1}$ sets $\calD_i$ of cardinality $n+1-2i$.
 \end{defi}
 
-\begin{thm}[7, Kleitman, 1970]\index{Kleitman}
+\begin{thm-num}[Kleitman, 1970]\index{Kleitman}
 	$E$ and $(x_i)_1^n$ as above. Then, $\P(n)$ has a symmetric partition into scattered sets.
-\end{thm}
+\end{thm-num}
 \begin{proof}\footnote{Different in lectures - this avoids support functionals}
 	Induct on $n$ - the base case is $\{\phi,\{1\}\}$.
 	
@@ -237,9 +242,9 @@ For the next few results, let $E$ be a normed space, $x_1,\cdots, x_n\in E$, $\l
 	That $\calD_j'$ and $\calD_j''$ form a symmetric partition is clear. To see scattered, note that it's trivially true for $\calD_j''$ and most of $\calD_j'$ - we only need to check the case $\left|\left|x_{A_m\cup\{n\}}-x_{A_j}\right|\right|\geq 1$. But this is true by our choice of $A_m$ above - indeed $\left|\left|x_{A_m\cup\{n\}} - x_{A_j}\right|\right|=\left|\left|x_{A_m} + x_n - x_{A_j}\right|\right|\geq \left|\left|x_n\right|\right|\geq1$
 \end{proof}
 
-\begin{thm}[8, Kleitman\footnote{A conjecture of Erdo\H{o}s in 1945}, 1970]\index{Kleitman}
+\begin{thm-num}[Kleitman\footnote{A conjecture of Erdo\H{o}s in 1945}, 1970]\index{Kleitman}
 	If $\A\subset\P(n)$ s.t. $\forall A,B\in\A$, $\left|\left|x_A - x_B\right|\right|<1$, then $|\A|\leq\binom{n}{\lf n/2\rf}$
-\end{thm}
+\end{thm-num}
 \begin{proof}
 	Take a symmetric partition $\P(n)=\dot{\bigcup}_{j=1}^{s}\calD_j,\ s=\binom{n}{\lf n/2\rf}$ into scattered sets.
 	
@@ -247,15 +252,17 @@ For the next few results, let $E$ be a normed space, $x_1,\cdots, x_n\in E$, $\l
 \end{proof}
 
 \section{The Kruskal-Katona Theorem}
-\begin{defi}[Lower Shadow]{set system!lower shadow}
+\begin{defi}[Lower Shadow]\index{set system!lower shadow}
 	If $\A\subset X^{(r)}$, then the \textbf{lower shadow of $\A$}, is given by $\partial\A=\{B\in X^{(r-1)}:B\subset A \textrm{ for some } A\subset\A \}$	
 \end{defi}
 
 \begin{fact}
-	We know that $|\partial\A|\geq|\A|\binom{n}{r-1}/\binom{n}{r}=|\A|\frac{r}{n-r+1}$ with equality iff $\A$ is $\phi$ or $X^{(r)}$.
+	$|\partial\A|\geq|\A|\binom{n}{r-1}/\binom{n}{r}=|\A|\frac{r}{n-r+1}$ with equality iff $\A$ is $\phi$ or $X^{(r)}$.
 \end{fact}
 
 We also ask the in-between question - what is $\calB\subset X^{(r)}$ s.t. $|\calB|=|\A|$ and $|\partial\calB|\leq|\partial\A|$?
+
+It's clear that $\partial[k]^{(r)}=[k]^{(r-1)}$, so $\exists\calB_1,\calB_2,\cdots\subset X^{(r)}$ s.t. $|\calB_m|=m$ and $\left|\partial\calB_m\right|\leq\left|\partial\calA\right|\ \forall\calA\subset X^{(r)}, |\calA|=m$
 
 \begin{defi}[Lexicographical Order]\index{ordering!lexicographical}
 	In the lexicographical order, $A<B$ if $\min(A\Delta B)\in A$. It can be summarised as ``prioritise using small numbers".

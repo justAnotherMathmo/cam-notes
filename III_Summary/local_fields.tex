@@ -1,0 +1,109 @@
+\documentclass[a4paper]{article}
+
+\def\npart {III}
+\def\nterm {Michaelmas}
+\def\nyear {2016}
+\def\nlecturer {C. Johansson}
+\def\ncourse {Local Fields}
+
+\input{../summary_header}
+
+\begin{document}
+\maketitle
+{\small \centering
+\noindent\emph{A brief summary of important ideas and results in the course}
+
+\setcounter{section}{-1}
+\section{Introduction}
+\marginpar{Lecture 1}
+If we look at $f(x_1, \cdots, x_n)\in\Z[x_1,\cdots,x_n]$, what are the ways we can look for solutions $\mathbf{a}\in\Z^n$?
+
+One way would be to look over $\R$, but the point of this course is to package all of the information modulo $p^n\forall n\geq0$ together. 
+
+\section{Basic Theory}
+
+\subsection{Some Generalities}
+\begin{defi-num}[Absolute value]\index{absolute value}
+	Let $K$ be a field. An \textbf{absolute value} on $K$ is a function $|\cdot|:K\rightarrow\R_{\geq 0}$ s.t.
+	\begin{enumerate}
+		\item $|x|=0\iff x=0$\\
+		\item $|xy|=|x|\cdot|y|\quad\forall x,y\in K$\\
+		\item $|x+y|\leq|x|+|y|\quad\forall x,y\in K$
+	\end{enumerate}
+\end{defi-num}
+\begin{eg}
+	$\Q,\R,\C$ with $|z|=\sqrt{z\overline{z}}$
+\end{eg}
+Note that $\left||x| - |y|\right|\leq|x-y|\ \forall x,y$. Also, an absolute value defines a metric $d(x,y)=|x-y|$\index{absolute value!metric} on $K$
+
+\begin{defi-num}[Valued Field]\index{valued field}
+	A \textbf{valued field} is a field with an absolute value.
+\end{defi-num}
+
+\begin{defi-num}[Equivalent]\index{valued field!equivalent}\label{def:equivalent}
+	If $K$ is a field, then two absolute values $|\cdot|,|\cdot|'$ are \textbf{equivalent} if they induce the same topology.
+\end{defi-num}
+
+\begin{exer-num}
+	Using notation as in Definition \ref{def:equivalent}, prove that TFAE
+	
+	\begin{enumerate}
+		\item $|\cdot|$ and $|\cdot|'$ are equivalent\\
+		\item $\forall x\in\quad|x|<1\Rightarrow|x|'<1$\\
+		\item $\exists s\in\R_{>0}$ s.t. $|x|^s=|x|'\quad x\in K$
+	\end{enumerate}
+\end{exer-num}
+
+\begin{exer-num}
+	Let $K$ be a valued field. Then the completion $\hat{K}$ of K is independent of $|\cdot|$ up to equivalence, and it is a valued field with an absolute value extending $|\cdot|$.
+\end{exer-num}
+
+\begin{defi-num}[Archimedean]\index{Archimedean}\index{Archimedean!non}\index{triangle inequality!strong}
+	An absolute value $|\cdot|$ on a field $K$ is called \textbf{non-Archimedean} if it satisfies the strong triangle inequality, i.e.
+	\[
+		|x+y|\leq \max(|x|,|y|)
+	\]
+	
+	Otherwise, the absolute value is \textbf{Archimedean}.
+\end{defi-num}
+
+Unless otherwise mentioned, \textbf{all absolute values will be non-Archimedean}. Also, all \textbf{absolute values are assumed to be non-trivial}.\index{absolute value!assumptions}
+
+\begin{defi}\index{valuation ring}
+	If $K$ is a valued field, then the \textbf{valuation ring} of $K$ is $\calO=\{x\ :\ |x|\leq 1\}$.
+\end{defi}
+
+\begin{prop-num}
+	\begin{enumerate}
+		\item $\calO$ is an open subring of $K$\\
+		\item $\forall r\in(0,1]$, $\{x\ :\ |x|<r\}$ and $\{x\ :\ |x|\leq r\}$ are open ideals of $\calO$\\
+		\item $\calO^{\mathrm{x}}=\{x\ :\ |x|=1\}$
+	\end{enumerate}
+\end{prop-num}
+\begin{proof}
+	Fairly trivial - obvious proof for each section works.
+\end{proof}
+
+\begin{prop-num}
+	Let $K$ be a valued field. For parts (ii) and (iii), assume that $K$ is complete.
+	\begin{enumerate}
+		\item Let $(x_n)$ be a sequence in $K$. If $x_n-x_{n+1}\rightarrow0$, then $(x_n)$ is Cauchy.\\
+		\item Let $(x_n)$ be a sequence in $K$. If $x_n-x_{n+1}\rightarrow0$, then $(x_n)$ converges.\\
+		\item Let $\sum_{n=0}^{\infty}y_n$ be a series in $K$. If $y_n\rightarrow0$, then $\sum_{n=0}^{\infty}y_n$ converges.
+	\end{enumerate}
+\end{prop-num}
+\begin{proof}
+	The first follows from the Archimedean assumption - use epsilons and that: $$\left|x_m-x_n\right|=\left|x_m-x_{m-1}+x_{m-1}-\cdots-x_n\right|\leq\max(\left|x_m-x_{m-1}\right|,\cdots,\left|x_{n+1}-x_{n}\right|)$$
+	The other two follow easily from the first.
+\end{proof}
+
+\begin{defi-num}[Integral Over a Ring]\index{ring!integral}
+	Let $R\subseteq S$ be rings, then $s\in S$ is \textbf{integral over $R$} if there exists a monic $f(x)\in R[x]$ s.t. $f(s)=0$.
+\end{defi-num}
+
+\begin{prop-num}
+	Let $R\subseteq S$ be rings
+\end{prop-num}
+
+\printindex
+\end{document}
