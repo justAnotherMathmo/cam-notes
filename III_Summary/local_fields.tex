@@ -20,6 +20,10 @@ If we look at $f(x_1, \cdots, x_n)\in\Z[x_1,\cdots,x_n]$, what are the ways we c
 
 One way would be to look over $\R$, but the point of this course is to package all of the information modulo $p^n\forall n\geq0$ together. 
 
+\begin{notation}
+	Throughout this course, all rings will be commutative with a 1, unless otherwise stated.
+\end{notation}
+
 \section{Basic Theory}
 
 \subsection{Some Generalities}
@@ -97,13 +101,266 @@ Unless otherwise mentioned, \textbf{all absolute values will be non-Archimedean}
 	The other two follow easily from the first.
 \end{proof}
 
-\begin{defi-num}[Integral Over a Ring]\index{ring!integral}
+\begin{defi-num}[Integral Over a Ring]\index{ring!integral}\marginpar{Lecture 2}
 	Let $R\subseteq S$ be rings, then $s\in S$ is \textbf{integral over $R$} if there exists a monic $f(x)\in R[x]$ s.t. $f(s)=0$.
 \end{defi-num}
 
 \begin{prop-num}
-	Let $R\subseteq S$ be rings
+	Let $R\subseteq S$ be rings. Then, $s_1,\cdots,s_n\in S$ are integral over $R\iff R[s_1,\cdots,s_n]\subseteq S$ is a finitely generated $R$-module.
 \end{prop-num}
+\begin{proof}
+	We do the $\Rightarrow$ direction first.
+	
+	By induction, it suffices to prove the case $n=1$. Pick a monic poly with $f(s)=0$, and construct any other polynomial using this and the division algorithm, so that $1,s,\cdots,s^{\deg f-1}$ is a basis of $R[s]$.
+	
+	For the $\Leftarrow$ direction, pick $R$-module generators and an element from $b\in R[s_1,\cdots,s_n]$. Write $bt_i$ in terms of the $t_j$ to make a matrix, then use its determinant and an "inverse" (adjoint) to get a polynomial from the determinant.
+\end{proof}
 
+\begin{cor-num}
+	Let $R\subseteq S$ be rings. If $s_1, s_2$ are integral over $R$, then $s_1+s_2$ and $s_1s_2$ are integral over $R$.
+	
+	Moreover, the set $\widetilde{R}\subseteq S$ of all elements of $S$ integral over $R$ is a ring.
+\end{cor-num}
+\begin{defi}[Integral Closure]\index{integral clsoure}\index{integrally closed}
+	$\widetilde{R}$ is called the \textbf{integral closure} of $R$ in $S$. If $R=\widetilde{R}$, then we say $R$ is integrally closed in $S$.
+\end{defi}
+\begin{proof}
+	$s_1s_2$ integral over $R$, so $R[s_1,s_2]$ finite over $R$ and hence any $b\in R[s_1, s_2]$ is integral over $R$.
+\end{proof}
+
+\begin{defi-num}[Ring Topology]\index{ring!topology}\index{ring!topological}
+	Let $R$ be a ring. A topology on $R$ is called a \textbf{ring topology} on $R$ if addition and multiplication are a continuous map $R\times R\to R$, where $R\times R$ is given the product topology.
+	
+	A ring with a ring topology is called a \textbf{topological ring}.
+\end{defi-num}
+
+\begin{exer}
+	Let $K$ be a valued field. Then $K$ is a topological ring.
+\end{exer}
+
+\begin{defi-num}[$I$-adically Open]\index{I-adic!open}
+	Let $R$ be a ring, $I\subseteq R$ an ideal. A subset $U\subseteq R$ is called \textbf{$I$-adically open} if $\forall x\in U,\ \exists n\geq 1$ s.t. $x+I^n \subseteq U$.
+\end{defi-num}
+
+\begin{prop-num}
+	The set of all $I$-adically open sets form a topology on $R$, call the $I$-adic topology\index{I-adic!topology}.
+\end{prop-num}
+\begin{proof}
+	$\phi, R$ are $I$-adically open by definition, as are arbitrary unions of $I$-adically open sets. Also, if $U,V$ are $I$-adically open and $x\in U\cap V$ with $x+I^m\subseteq U$ and $x+I^n\subseteq V$, then $x+I^{\max(m,n)}\subseteq U\cap V$
+\end{proof}
+
+\begin{exer}
+	The $I$-adic topology is a ring topology of $R$.
+\end{exer}
+
+\begin{defi-num}[Inverse Limit]\index{inverse limit}\index{projective limit}
+	Let $R_1, R_2,\cdots$ be topological rings with continuous homomorphisms $f_n : R_{n+1}\to R_n\ \forall n\geq 1$. Then, the \textbf{inverse limit} or \textbf{projective limit} of the $R_i$ is the ring:
+	\[
+		\xleftarrow[\mathrm{n}]{\mathrm{lim}} = \left\{\left(x_n\right)\in\prod_nR_n\ :\ f_n\left(x_{n+1}\right)=x_n\ \forall n\geq 1\right\}
+		\subseteq \prod_nR_n
+	\]
+	with coordinate-wise addition/multiplication, together with the subspace topology\footnote{called the inverse limit topology} induced by the product topology on $\prod_nR_n$.
+\end{defi-num}
+
+\begin{prop-num}
+	The inverse limit topology is a ring topology.
+\end{prop-num}
+\begin{proof}
+	Use that $\prod R_n\times\prod R_n\to\prod R_n$ is continuous, with the map being coordinate-wise addition/multiplication, as well as containment of the inverse limit inside $\prod R_n$ and the projection map. Also, use the map $\left(\xleftarrow[\mathrm{n}]{\mathrm{lim}}R_n\right)\times\left(\xleftarrow[\mathrm{n}]{\mathrm{lim}}R_n\right)\to\prod R_n\times\prod R_n$
+\end{proof}
+
+\begin{defi-num}[$I$-adic completion]\index{I-adic!completion}
+	$R$ a ring, $I$ an ideal. The \textbf{$I$-adic completion} of $R$ is the topological ring:
+	\[
+		\xleftarrow[\mathrm{n}]{\mathrm{lim}} R/I^n	
+	\]
+	Where $R/I^n$ has the discrete topology and $R/I^{n+1}\to R/I^n$ is the natural map.
+\end{defi-num}
+
+$\calA \subset X^{\lf{n/2}\rf}\cup X^{\lc{n/2}\rc}$
+
+\begin{defi}[$I$-adically Complete]\index{I-adic!complete}\marginpar{Lecture 3}
+	$R$ a ring, $I\subseteq R$ an ideal. Then $\exists$ a map 
+	\begin{align*}
+		\nu : R &\to \left(\xleftarrow[\mathrm{n}]{\mathrm{lim}}R/I^n\right)\\
+		r & \mapsto \left(r\ \mathrm{mod}\ I^n\right)_n
+	\end{align*}
+	This map is a cts ring homomorphism when $R$ is given the $I$-adic topology. We say that $R$ is \textbf{$I$-adically complete} if $\nu$ is a bijection.
+\end{defi}
+
+\begin{exer}
+	If $\nu$ is a bijection, then $\nu$ is a homeomorphism
+\end{exer}
+
+If $I=xR$, then we often call the $I$-adic topology the $x$-adic topology.
+
+\section{The $p$-adic numbers}
+From now on in this course, $p$ will be taken to mean a prime number.
+
+If $x\in\Q \setminus \{0\}$, then there is a unique representation $p^n\frac{a}{b}$, where $a,n\in\Z,\ b\in\Z_{\geq 0}$ and $(a,p)=(b,p)=(a,b)=1$
+
+\begin{defi}[$p$-adic Absolute Value]\index{p-adic!absolute value}
+	We define the \textbf{$p$-adic absolute value} on $\Q$ to be the function $|\cdot|\ :\ \Q\to\R_{\geq0}$ given by:
+	\[
+		|x|_p =
+		\begin{cases}
+			0, & \text{if } x=0\\
+			p^{-n}, & \text{if } x=p^n\frac{a}{b}\quad(\text{i.e. }x\neq0)
+		\end{cases}
+	\]
+\end{defi}
+
+That $|\cdot|$ is a (non-Archimedean) absolute value is clear.
+
+\begin{fact}
+	$x\in\Z_{\neq0}\implies|x|_p=p^{-n}\iff p^n\|x$
+\end{fact}
+
+\begin{defi-num}[$p$-adic Numbers/Integers]\index{$p$-adic!numbers}\index{$p$-adic!integers}
+	The \textbf{$p$-adic numbers}, $\Q_p$ is the completion of $\Q$ with respect to $|\cdot|_p$
+	
+	The valuation ring $\Z_p=\{x\in\Q_p\ :\ |x|_p\leq1\}$ is called the \textbf{$p$-adic integers}.
+\end{defi-num}
+
+\begin{prop-num}
+	$\Z_p$ is the closure of $\Z$ inside $\Q_p$.
+\end{prop-num}
+\begin{proof}
+	Consider that $\Z_{(p)}=\{x\in\Q\ :\ |x|_p\leq1\}$ is dense in $\Z_{(p)}$ and that $\Z\subseteq\Z_{(p)}$. Show that $\Z$ is dense in $\Z_{(p)}$.
+\end{proof}
+
+\begin{prop-num}
+	The non-zero ideals of $\Z_p$ are $p^n\Z_p$ for $p\geq0$. Moreover,
+	\[
+		\Z/p^n\Z\cong\Z_p/p^n\Z_p
+	\]
+\end{prop-num}
+\begin{proof}
+	Pick an ideal $I$ and a maximal element $x\neq0$ from it. Show that $I=xR$ and $p^n\Z_p=x\Z_p$ to get the first part.
+	
+	For the second part, look at $f_n\ :\ \Z\to\Z_p/p^n\Z_p$ and its kernel (which is $p^n\Z$), showing that it induces an isomorphism.
+\end{proof}
+
+\begin{cor-num}
+	$\Z_p$ is a PID with a unique prime element $p$ (up to units).
+\end{cor-num}
+
+\begin{prop-num}\index{$p$-adic!topology}
+	The topology on $\Z$ induced by $|\cdot|_p$ is the $p$-adic topology
+\end{prop-num}
+\begin{proof}
+	Straightforward - pick $U\subseteq\Z$ and show it directly.
+\end{proof}
+
+\begin{prop-num}
+	$\Z_p$ is $p$-adically complete and is isomorphic to the $p$-adic completion of $\Z$.
+\end{prop-num}
+\begin{proof}
+	The second part follows from the first by the proof of Proposition 20 via
+	\[
+		\Z_p \xleftarrow{\nu} \left(\xleftarrow[\mathrm{n}]{\mathrm{lim}}\Z_p/p^n\Z_p\right) 
+		     \xrightarrow{\nu} \lim\Z/p^n\Z
+	\]
+	
+	To prove the first part, we get injectivity by looking at $x\in\ker(\nu)\iff x\in p^n\Z_p\ \forall n\iff x=0$.
+	
+	We get surjectivity by picking $(z_n)\in\xleftarrow[\mathrm{n}]{\mathrm{lim}}\Z_p/p^n\Z_p$ with the unique representative of $z_n$ in $\{0,1,\cdots,p^n-1\}$ as $x_n=\sum_{i=0}^{n-1}a_ip_i$, then considering $x=\sum_{i=0}^{\infty}a_ip^i$.
+\end{proof}
+
+\begin{cor-num}
+	\marginpar{Lecture 4}
+	Every $a\in\Z_p$ has a unique expansion $a=\sum_{i=0}^{\infty}a_ip^i$ with $a_i\in\{0,1,\cdots,p-1\}$
+	
+	Also, every $a\in\Q_p^{\mathrm{x}}$ has a unique expansion $a=\sum_{i=n}^{\infty}a_ip^i$ with $n\in\Z,\quad n=-\log_p|a|_p$ and $a_n\neq0$.
+\end{cor-num}
+
+
+\section{Valued Fields}
+
+\begin{defi-num}[Valuation]\index{valuation}
+	Let $K$ be a valued field. A \textbf{valuation} on $K$ is a function $V\ :\ K\to\R\cup\{\infty\}$ s.t., $\forall x,y\in K$:
+	\begin{enumerate}
+		\item $v(x)=\infty \iff x=0$\\
+		\item $v(xy)=v(x)+v(y)$\\
+		\item $v(x+y)\geq\min(v(x),v(y))$
+	\end{enumerate}
+	Here we use the conventions $r+\infty=\infty,\ r\leq\infty\quad\forall r\in \R\cup\{\infty\}$
+\end{defi-num}
+
+\begin{rem}
+	If $V$ is a valuation, and $|x|=c^{-V(x)}$ for some $c\in\R_{>1}$, then $|\cdot|$ is an absolute value.
+	
+	Conversely, $|\cdot|$ an absolute value implies that $V(x)=-\log_c|x|$.
+\end{rem}
+
+\begin{defi}[Field of Formal Laurent Series']\index{field of formal Laurent series}
+	If $K$ a field, then the \textbf{field of formal Laurent series' over $K$} is 
+	\[
+		K((T))=\left\{\sum_{i\gg-\infty}^{\infty}a_iT^i\ :\ a_i\in K\right\}
+	\]
+\end{defi}
+
+\begin{exer}
+	Show that $v\left(\sum a_iT^i\right)=\min\{i\ :\ a_i\neq0\}$ is a valuation of $K((T))$
+\end{exer}
+
+\begin{notation}
+	The \textbf{valuation ring}: $\calO=\calO_k=\{x\in K\ :\ |x|\leq 1\}$\index{p-adic!valuation ring}\\
+	The \textbf{maximal ideal}: $\mathfrak{m}=\mathfrak{m}_k=\{x\in K\ :\ |x|< 1\}$\index{p-adic!maximal ideal}\\
+	The \textbf{residue field}: $k=k_K=\calO/\mathfrak{m}$\index{p-adic!residue field}
+\end{notation}
+
+\begin{defi}[Primitive]\index{primitive}
+	If $K$ a valued field and $a_0+a_1x+\cdots a_nx^n=F(x)\in K[x]$ is a polynomial, we say $F$ is \textbf{primitive} if $\max_i|a_i|=1$ (so $F\in\calO[x]$).
+\end{defi}
+
+\begin{thm-num}[Hensel's Lemma]\index{Hensel's lemma}
+	Assume that $K$ is complete and that $F\in K[x]$ is primitive. Put $f= F\ \mathrm{mod}\ \mathfrak{m}\in\mathfrak{k}[x]$. Then, if there's a factorisation $f(x)=g(x)h(x)$ with $(g,h)=1$, then there's a factorisation $F(x)=G(x)H(x)$ in $\calO[x]$ with $g\equiv G,\ h\equiv H\ \mathrm{mod}\ \mathfrak{m}$ and $\deg g = \deg G$.
+\end{thm-num}
+\begin{proof}
+	Put $d=\deg F, m=\deg g$, giving $\deg h\leq d-m$. Pick lifts $G_0,H_0\in\calO[x]$ of $g,h$ with $\deg G_0=\deg g$ and $\deg H_0\leq d-m$.
+	
+	So, $(g,h)=1\implies\exists A,B\in\calO[x]$ s.t. $AG_0+BH_0\equiv1\mod{\mathfrak{m}}$
+	
+	Pick $\pi\in\mathfrak{m}$ s.t. $F=G_0H_0\equiv AG_0+BH_0-1\equiv0\mod{\pi}$. Then, we want to find:
+	
+	\[
+		\begin{rcases}
+			G &= G_0+\pi P_1+\pi^2 P_2+\cdots\\
+			H &= H_0+\pi Q_1+\pi^2 Q_2+\cdots
+		\end{rcases} \in\calO[x]
+	\]
+	with $P_i,Q_i\in\calO[x]$, $\deg P_i<m$ and $\deg Q_i\leq d-m$. By the definition of $\mathfrak{m}$, this would converge, so doing this suffices.
+	
+	We want $F\equiv G_{n-1}H_{n-1}\mod{\pi^n}$ then to take the limit, which we'll find by induction. The base case is trivial, so we assume we have $G_{n-1},H_{n-1}$. We want to find $G_n=G_{n-1}+\pi^n P_n$ and $H_n=H_{n-1}+\pi^n Q_n$.
+	
+	Expanding $F-G_nH_n$, it is equivalent to find
+	\[
+		F-G_{n-1}H_{n-1}\equiv\pi^n\left(G_{n-1}Q_n+H_{n-1}P_n\right)\mod{\pi^{n+1}}
+	\]
+	
+	Divide by $\pi^n$ to get:
+	\[
+		G_0Q_n+H_0P_n\equiv G_{n-1}Q_n+H_{n-1}P_n\equiv\frac{1}{\pi^n}\left(F-G_{n-1}H_{n-1}\right)\mod{\pi}
+	\]
+	
+	But $AG_0+BH_0\equiv1\mod{\pi}\implies F _n\equiv AG_0F_n+BH_0F_n\mod{\pi}$. Now, write $BF_n=SG_0+P_n$, with $\deg P_n < \deg G_0, P_n\in\calO[x]$ and $S$ is some quotient. Then,
+	\[
+		G_0\left(AF_n+H_0Q\right)+H_0P_n\equiv F_n\mod{\pi}
+	\]
+	
+	Omit all coefficients from $AF_n+H_0Q$ divisible by $\pi$ to get $Q_n$.
+\end{proof}
+
+\begin{cor-num}
+	Let $F(x)=a_0+a_1x+\cdots+a_nx^n\in k[x]$, $k$ complete and $a_0a_n\neq0$. If $F$ is irreducible, then $|a_i|\leq\max(|a_0|,|a_n|)\ \forall i$
+\end{cor-num}
+\begin{proof}
+	WLOG $F$ is primitive (scale). Pick the minimal $r$ s.t. $|a_r|=1$ and look at $F$ modulo $\mathfrak{m}$. If $\max(|a_0|,|a_n|)\neq1$, then $F$ lifts to a non-trivial factorisation via Hensel's Lemma.
+\end{proof}
+
+\begin{cor-num}
+	$F\in\calO[x]$, $k$ complete. If $F\ \mathrm{mod}\ \mathfrak{m}$ has a simple root $\bar{\alpha}\in k$, then $F$ has a unique simple root $\alpha\in\calO$ lifting $\bar{\alpha}$
+\end{cor-num}
 \printindex
 \end{document}

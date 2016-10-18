@@ -134,6 +134,8 @@ The simplest example of Sperner sets are the level sets, $X^{(r)}$
 	In a poset, an \textbf{antichain} has no two elements that are comparable.
 \end{defi}
 
+A set-system being Sperner is the same as being an antichain with the operation $\subseteq$.
+
 \begin{thm-num}[Sperner, 1928]\index{Sperner!Theorem}
 	If $\A\subset\P(n)$ is Sperner, then $|\A|\leq\binom{n}{\lf n/2\rf}$
 \end{thm-num}
@@ -165,7 +167,7 @@ The simplest example of Sperner sets are the level sets, $X^{(r)}$
 \begin{proof}
 	The inequality is immediate.
 	
-	With equality, $\A\subset X^{(\lf n/2\rf)}\cup X^{(\lc n/2\rc)}$ so the claim holds for $n$ even - now we check $n=2k+1$. Write $\A_k=\A\cup X^{(k)}, \A_{k+1}=\A\cup X^{(k+1)}$, which yields a bipartite graph (if both non-empty, else claim holds).
+	With equality, we see that $\A\subset X^{(\lf n/2\rf)}\cup X^{(\lc n/2\rc)}$ quickly\footnote{Indeed, if $A$ not in here, then $w(A)$ is not minimal, so we can't have $\binom{n}{\lf n/2 \rf}$ terms}, so the claim holds for $n$ even - now we check $n=2k+1$. Write $\A_k=\A\cup X^{(k)}, \A_{k+1}=\A\cup X^{(k+1)}$, which yields a bipartite graph (if both non-empty, else claim holds).
 	
 	Then, using Theorem 4 from Section 1, $|\A|=\left|\A_k\right|+\left|\A_{k+1}\right|<\left|\A_k\right|+\left|\Gamma\left(\A_{k+1}\right)\right|\leq\binom{n}{k}$.
 \end{proof}
@@ -260,9 +262,9 @@ For the next few results, let $E$ be a normed space, $x_1,\cdots, x_n\in E$, $\l
 	$|\partial\A|\geq|\A|\binom{n}{r-1}/\binom{n}{r}=|\A|\frac{r}{n-r+1}$ with equality iff $\A$ is $\phi$ or $X^{(r)}$.
 \end{fact}
 
-We also ask the in-between question - what is $\calB\subset X^{(r)}$ s.t. $|\calB|=|\A|$ and $|\partial\calB|\leq|\partial\A|$?
-
-It's clear that $\partial[k]^{(r)}=[k]^{(r-1)}$, so $\exists\calB_1,\calB_2,\cdots\subset X^{(r)}$ s.t. $|\calB_m|=m$ and $\left|\partial\calB_m\right|\leq\left|\partial\calA\right|\ \forall\calA\subset X^{(r)}, |\calA|=m$
+\begin{aim}
+	We ask an in-between question - given $m$ and $r$, we'd like to find $\calB\subset X^{(r)}$ with $|\calB|=m$ s.t. $|\partial\calB|\leq|\partial\calA|$ for any given $\calA\subset X^{(r)}$ with $|\calA|=m$.
+\end{aim}
 
 \begin{defi}[Lexicographical Order]\index{ordering!lexicographical}
 	In the lexicographical order, $A<B$ if $\min(A\Delta B)\in A$. It can be summarised as ``prioritise using small numbers".
@@ -277,6 +279,27 @@ It's clear that $\partial[k]^{(r)}=[k]^{(r-1)}$, so $\exists\calB_1,\calB_2,\cdo
 	
 	Colex: $123,124,134,234,125,135,235,\cdots, 456$
 \end{eg}
+
+\begin{notation}
+	\marginpar{Lecture 5}
+	We define $\calA+D=\{A\cup D\ :\ A\in\calA\}$ and:
+	\begin{align*}
+		\calB^{(r)}(m_r,\cdots,m_s)=[m_r]^{(r)}
+				& \cup \left([m_{r-1}]^{(r-1)}+\{m_r+1\}\}\right)\\
+				& \cup \left([m_{r-2}]^{(r-2)}+\{m_{r-1}+1, m_r+1\}\}\right)\\
+				& \cup \cdots\\
+				& \cup \left([m_s]^{(s)}+\{m_{s+1}+1,m_{s+2}+1,\cdots,m_r+1\}\}\right)
+	\end{align*}
+	Furthermore, $b^{(r)}(m_r,\cdots,m_s)=|\calB^{(r)}(m_r,\cdots,m_s)|=\sum_{j=s}^{r}\binom{m_j}{j}$
+\end{notation}
+
+Note that $\partial\calB^{(r)}(m_r,\cdots,m_s)=\calB^{(r-1)}(m_r,\cdots,m_s)$,
+
+So $b^{(r-1)}(m_r,\cdots,m_s)=\sum_{j=s}^{r}\binom{m_j}{j-1}$
+
+\begin{lemma-num}
+	For $\ell,r\in\N$, there exists unique $m_r>\cdots >m_s$ s.t. $\ell=\sum_{j=s}^r\binom{n_j}{j}$. Also, the first $\ell$ sets in $X^{(r)}$ under the colex ordering is $\calB^{(r)}(m_r,\cdots,m_s)$.
+\end{lemma-num}
 
 \printindex
 \end{document}
