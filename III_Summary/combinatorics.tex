@@ -42,15 +42,15 @@ Note that here the edge $Ax\in E\left(G_{\A}\right)\Leftrightarrow x\in A$. Basi
 If we look at the bipartite graph of an SDR as above, then we see that it corresponds to a complete matching $U\rightarrow W$ (i.e. $\A$ into all elements of $X$ that $\A$ hits)
 
 \begin{thm-num}[Hall, 1935]\index{Hall!theorem}
-	A set system $\A$ has an SDR if $\forall\A'\subset\A$:
-	$$\left|\bigcup_{A\in\A'}A\right|\geq\left|\A\right|$$
+	A set system $\A$ has an SDR iff $\forall\A'\subset\A$:
+	$$\left|\bigcup_{A\in\A'}A\right|\geq\left|\A'\right|$$
 \end{thm-num}
 
 If we look at a bipartite graph in the context of set systems, we see that every bipartite graph corresponds to a multiset of sets, giving us a reformulation of Hall:
 
 \addtocounter{cor-num}{-1}
 \begin{thm-num}[Alternate Version]\index{Hall!theorem}
-	A bipartite graph $G(U,W)$ has a complete matching if, $\forall S\subset U$,
+	A bipartite graph $G(U,W)$ has a complete matching iff, $\forall S\subset U$,
 	\begin{equation}\index{Hall!criterion}\label{eq:hc}
 		\left|\Gamma(S)\right|\geq|S|
 	\end{equation}
@@ -141,7 +141,7 @@ A set-system being Sperner is the same as being an antichain with the operation 
 \end{thm-num}
 \begin{proof}
 	For $0\leq r\leq n-1$, we can easily find a complete matching between $X^{(r)}$ and $X^{(r+1)}$ from the smaller set to the larger set (where $AB\in E\left(X^{(r)},X^{(r+1)}\right)$ iff $A\subset B$ or $B\subset A$). All these matchings put together create a collection of $\binom{n}{\lf n/2\rf}$ paths in $Q^n$ (look from the largest layer in the middle outward - i.e. the layer where $r=\lf n/2\rf$), each of which is a chain. Hence our poset is covered by $\binom{n}{\lf n/2\rf}$, giving $|\A|\leq\binom{n}{\lf n/2\rf}$
-\end{proof}}
+\end{proof}
 
 \begin{defi}[Weight]\index{weight}
 	The \textbf{weight} $w(A)$ of a set $A\in\P(n)$ is $w(A)=\frac{1}{\binom{n}{|A|}}$
@@ -300,6 +300,17 @@ So $b^{(r-1)}(m_r,\cdots,m_s)=\sum_{j=s}^{r}\binom{m_j}{j-1}$
 \begin{lemma-num}
 	For $\ell,r\in\N$, there exists unique $m_r>\cdots >m_s$ s.t. $\ell=\sum_{j=s}^r\binom{n_j}{j}$. Also, the first $\ell$ sets in $X^{(r)}$ under the colex ordering is $\calB^{(r)}(m_r,\cdots,m_s)$.
 \end{lemma-num}
+\begin{proof}
+	The sets in $X^{(r)}$ not larger than $A=\{a_1,\cdots,a_r\}$ with $a_1<\cdots<a_r$ in colex is $\calB^{(r)}(a_r-1,a_{r-1}-1,\cdots,a_{s+1}-1,a_s)$, where $s=\min\{i\ :\ a_i<a_{i+1}-1\}$ - i.e. the first index from the smallest upwards that doesn't have the numbers in consecutive order\footnote{e.g. in $\{3,4,7,9\}$, this would be between 4 and 7, so we get $\calB^{(4)}(8,6,4)$, i.e. $s=2$}.
+	
+	That this works is a simple check.
+\end{proof}
 
+\begin{defi}
+	An $i,j$-compression, for $i,j\in X$, $A\in\P(X)$ is:
+	\[
+		tests
+	\]
+\end{defi}
 \printindex
 \end{document}
